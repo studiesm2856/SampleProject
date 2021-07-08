@@ -3,7 +3,7 @@ pipeline
 {
     agent any 
     stages{ 
-    Stage('checkout')
+    stage('checkout')
     {
     steps{ 
   checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/studiesm2856/SampleProject.git']]]) 
@@ -12,7 +12,7 @@ pipeline
         
     }
     
-    Stage('code anaylsis')
+    stage('code anaylsis')
     {
      steps{
         build job: 'code anaylsis', parameters: [string(name: 'workspace', value: workspace)]
@@ -28,7 +28,9 @@ pipeline
 
     stage('code unit test')
     {
+    steps{
         build job: 'code unit test', parameters: [string(name: 'workspace', value: workspace)]
+    }
     }
     stage('code package')
     {
@@ -38,7 +40,7 @@ pipeline
     }
     stage('code deploy')
     {
-     stepe{
+     steps{
 
       build job: 'Code deploy'  
     }
