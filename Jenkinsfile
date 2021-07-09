@@ -6,9 +6,10 @@ pipeline
     stage("checkout")
     {
     steps{ 
-  checkout([$class: "GitSCM", branches: [[name: "*/master"]], extensions: [], userRemoteConfigs: [[url: "https://github.com/studiesm2856/SampleProject.git"]]])
-       workspace = pwd()
-        
+    checkout([$class: "GitSCM", branches: [[name: "*/master"]], extensions: [], userRemoteConfigs: [[url: "https://github.com/studiesm2856/SampleProject.git"]]])
+	    steps{
+	    workspace = pwd()
+	    }
     }  
     }
     
